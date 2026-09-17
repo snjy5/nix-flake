@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 with lib;
 
@@ -44,15 +49,15 @@ in
   };
 
   config = mkIf cfg.enable {
-    
+
     # If you still want the script visible in /etc for debugging:
     environment.etc."btrfs-snapshots.sh".source = snapScript;
 
     systemd.services."btrfs-snapshots" = {
       description = "Create readonly btrfs snapshot of /";
-      # REMOVED: wantedBy = [ "multi-user.target" ]; 
+      # REMOVED: wantedBy = [ "multi-user.target" ];
       # Timers handle starting the service, it shouldn't start on boot directly.
-      
+
       serviceConfig = {
         Type = "oneshot";
         # Point directly to the nix store derivation
