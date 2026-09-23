@@ -245,7 +245,7 @@
   systemd.services.display-manager.stopIfChanged = false;
   systemd.services.display-manager.restartIfChanged = false;
 
- # Enable the X11/Wayland display server & GDM
+  # Enable the X11/Wayland display server & GDM
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
@@ -272,22 +272,22 @@
       fileSystems = [ "/" ];
     };
 
-   # tlp = {
-   #   enable = true;
-   #   settings = {
-   #    CPU_SCALING_GOVERNOR_ON_AC = "schedutil";
-   #    CPU_SCALING_GOVERNOR_ON_BAT = "schedutil";
-   #    USB_AUTOSUSPEND = 0;
-   #    USB_EXCLUDE_AUDIO = 1;
-   #    USB_EXCLUDE_INPUT = 1;
-   #    USB_EXCLUDE_WWAN = 1;
-   #    USB_AUTOSUSPEND_DISABLE_ON_STARTUP = 1;
-   #    WIFI_DISABLE_ON_LID_CLOSE = 0;
-   #    BLUETOOTH_DISABLE_ON_LID_CLOSE = 0;
-   #    START_CHARGE_THRESH_BAT0 = 75;
-   #    STOP_CHARGE_THRESH_BAT0 = 80;
-   #  };
-   #};
+    # tlp = {
+    #   enable = true;
+    #   settings = {
+    #    CPU_SCALING_GOVERNOR_ON_AC = "schedutil";
+    #    CPU_SCALING_GOVERNOR_ON_BAT = "schedutil";
+    #    USB_AUTOSUSPEND = 0;
+    #    USB_EXCLUDE_AUDIO = 1;
+    #    USB_EXCLUDE_INPUT = 1;
+    #    USB_EXCLUDE_WWAN = 1;
+    #    USB_AUTOSUSPEND_DISABLE_ON_STARTUP = 1;
+    #    WIFI_DISABLE_ON_LID_CLOSE = 0;
+    #    BLUETOOTH_DISABLE_ON_LID_CLOSE = 0;
+    #    START_CHARGE_THRESH_BAT0 = 75;
+    #    STOP_CHARGE_THRESH_BAT0 = 80;
+    #  };
+    #};
 
     pipewire = {
       enable = true;
@@ -367,11 +367,11 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [ 
-    pkgs.xdg-desktop-portal-hyprland  # Hyprland
-    pkgs.kdePackages.xdg-desktop-portal-kde # KDE Plasma
-    pkgs.xdg-desktop-portal-gtk 
-    pkgs.xdg-desktop-portal-gnome 
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland # Hyprland
+      pkgs.kdePackages.xdg-desktop-portal-kde # KDE Plasma
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
     ];
   };
 
@@ -423,6 +423,7 @@
       fuzzel
       brightnessctl
       gammastep
+      kdePackages.konsole
 
       # Apps & Media
       firefox
@@ -468,6 +469,10 @@
       imv
       terraform
       ansible
+
+      # Office
+      pandoc
+      texliveSmall
 
     ];
   };
