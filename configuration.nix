@@ -457,6 +457,7 @@
       gnomeExtensions.pop-shell # tiling
       mupdf
       easyeffects
+      links2
 
       # Video rendering
       v4l-utils
@@ -489,6 +490,7 @@
       terraform
       ansible
       android-tools
+      dmidecode
 
       # Office
       pandoc
