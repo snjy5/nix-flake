@@ -380,6 +380,26 @@
     };
     kdeconnect.enable = true;
     zsh.enable = true;
+    adb.enable = true;
+  };
+
+  services.udev.extraRules =
+    let
+      # lsusb and get the id for each device
+      # Motorola PCS XT1541 [Moto G 3rd Gen] 22b8:2e82
+      idVendor = "22b8"; 
+      idProduct = "2e82";
+    in
+    ''
+      SUBSYSTEM=="usb", ATTR{idVendor}=="${idVendor}", MODE="[]", GROUP="adbusers", TAG+="uaccess"
+      SUBSYSTEM=="usb", ATTR{idVendor}=="${idVendor}", ATTR{idProduct}=="${idProduct}", SYMLINK+="android_adb"
+      SUBSYSTEM=="usb", ATTR{idVendor}=="${idVendor}", ATTR{idProduct}=="${idProduct}", SYMLINK+="android_fastboot"
+    '';
+
+  # add user to adbusers group
+  users.users.void = {
+    isNormalUser = true;
+    extraGroups = [ "adbusers" ];
   };
 
   # ===========================================================================
