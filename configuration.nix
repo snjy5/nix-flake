@@ -380,7 +380,6 @@
     };
     kdeconnect.enable = true;
     zsh.enable = true;
-    adb.enable = true;
   };
 
   services.udev.extraRules =
@@ -489,6 +488,7 @@
       imv
       terraform
       ansible
+      android-tools
 
       # Office
       pandoc
