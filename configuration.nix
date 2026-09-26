@@ -347,7 +347,7 @@
       # aggressive cooling: ramp early, peg at max RPM under load
       settings = {
         general = {
-          min_fan1_speed = 6200; # High baseline airflow even at idle (default is 1300)
+          min_fan1_speed = 1300; # High baseline airflow even at idle (default is 1300)
           max_fan1_speed = 6200; # Full hardware blast limit
 
           # in celcius
