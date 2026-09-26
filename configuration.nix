@@ -351,9 +351,9 @@
           max_fan1_speed = 6200; # Full hardware blast limit
 
           # in celcius
-          low_temp = 50; # Start ramping up as soon as it reaches low_temp
-          high_temp = 50; # Reach maximum fan speed by high_temp
-          max_temp = 50; # Emergency threshold at max_temp (strictly pegged at max_fan1_speed)
+          low_temp = 55; # Start ramping up as soon as it reaches low_temp
+          high_temp = 55; # Reach maximum fan speed by high_temp
+          max_temp = 55; # Emergency threshold at max_temp (strictly pegged at max_fan1_speed)
 
           polling_interval = 2; # Check temperatures every 2 seconds instead of default 7
         };
