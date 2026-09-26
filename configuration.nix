@@ -1,4 +1,9 @@
 # ./configuration.nix
+# MacBookPro11,1: 13-inch Retina MacBook Pro 2013 or 2014 with Intel Haswell: Intel(R) Core(TM) i5-4258U CPU @ 2.40GHz
+# not a Broadwell 2015 model.
+# wifi: Broadcom BCM4360 802.11ac
+# graphics: Intel Iris 5100 Graphics
+
 {
   config,
   pkgs,
@@ -78,6 +83,7 @@
 
     extraModprobeConfig = ''
       options v4l2loopback devices=1 exclusive_caps=1 video_nr=1 card_label="VirtualCam"
+      options facetimehd pcie_aspm=0
     '';
 
     supportedFilesystems = [
@@ -140,8 +146,12 @@
     cpu.intel.updateMicrocode = true;
     graphics = {
       enable = true;
-      extraPackages = [ pkgs.intel-vaapi-driver ];
+      extraPackages = with pkgs; [ 
+      intel-media-driver
+      libvdpau-va-gl
+      ];
     };
+
     bluetooth = {
       enable = true;
       powerOnBoot = true;
@@ -152,8 +162,14 @@
         };
       };
     };
+
     firmware = [ pkgs.facetimehd-firmware ];
-    facetimehd.enable = true;
+
+    facetimehd = {
+      enable = true;
+      withCalibration = true;
+    };
+
     pulseaudio.enable = false;
   };
 

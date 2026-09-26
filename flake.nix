@@ -5,19 +5,23 @@
   inputs = {
     # Pin Nixpkgs to 26.05
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # Pin Home Manager to the EXACT SAME release (26.05)
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
-
-      # This line forces Home Manager to use YOUR nixpkgs input
-      # instead of downloading its own separate copy.
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
+  # Fix: Added nixos-hardware here
   outputs =
-    { nixpkgs, home-manager, ... }:
+    {
+      nixpkgs,
+      home-manager,
+      nixos-hardware,
+      ...
+    }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -28,6 +32,7 @@
         modules = [
           ./configuration.nix
           home-manager.nixosModules.home-manager
+          nixos-hardware.nixosModules.apple-macbook-pro-11-1
         ];
       };
 
