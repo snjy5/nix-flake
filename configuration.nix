@@ -73,6 +73,8 @@
       kernelModules = [
         "btrfs"
         "i915"
+        "applesmc"
+        "coretemp"
       ];
       luks.devices."nixos" = lib.mkForce {
         device = "UUID=f919548e-79a7-4209-b51f-3e67689883ca";
@@ -146,9 +148,9 @@
     cpu.intel.updateMicrocode = true;
     graphics = {
       enable = true;
-      extraPackages = with pkgs; [ 
-      intel-media-driver
-      libvdpau-va-gl
+      extraPackages = with pkgs; [
+        intel-media-driver
+        libvdpau-va-gl
       ];
     };
 
@@ -339,6 +341,25 @@
         };
       };
     };
+
+    mbpfan = {
+      enable = true;
+      # aggressive cooling: ramp early, peg at max RPM under load
+      settings = {
+        general = {
+          min_fan1_speed = 6200; # High baseline airflow even at idle (default is 1300)
+          max_fan1_speed = 6200; # Full hardware blast limit
+
+          # in celcius
+          low_temp = 50; # Start ramping up as soon as it reaches low_temp
+          high_temp = 50; # Reach maximum fan speed by high_temp
+          max_temp = 50; # Emergency threshold at max_temp (strictly pegged at max_fan1_speed)
+
+          polling_interval = 2; # Check temperatures every 2 seconds instead of default 7
+        };
+      };
+    };
+
   };
 
   virtualisation.docker.enable = true;
