@@ -429,6 +429,7 @@
       swaylock
       foot
       waybar
+      wf-recorder
 
       # Apps & Media
       firefox
