@@ -52,6 +52,10 @@
       waybar
       wf-recorder
 
+      # Desktop environment
+      gsettings-desktop-schemas
+      glib 
+
       # Apps & Media
       firefox
       microsoft-edge

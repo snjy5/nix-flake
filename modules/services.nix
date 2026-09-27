@@ -92,4 +92,5 @@
   };
 
   virtualisation.docker.enable = true;
+
 }
