@@ -16,8 +16,14 @@
         "flakes"
       ];
       fallback = false;
-      max-jobs = 16;
+      max-jobs = 128;
+
+      # For downloads
+      max-substitution-jobs = 128;
+      http-connections = 50;
+      http2 = true;
     };
+
     gc = {
       automatic = true;
       dates = "weekly";
