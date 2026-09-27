@@ -8,7 +8,11 @@
 
 {
   programs = {
-    sway.enable = true;
+    sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+    };
+
     kdeconnect.enable = true;
     zsh.enable = true;
   };

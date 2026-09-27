@@ -37,14 +37,24 @@
     polkit.enable = true;
   };
 
+  # Handles screencasting/screenshots for wlroots/sway for FileChooser, AppChooser, etc. 
+  # For sway or plain window manager setups
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
+    wlr.enable = true; 
     extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
-      pkgs.kdePackages.xdg-desktop-portal-kde
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-gnome
+      pkgs.xdg-desktop-portal-gtk 
     ];
+    config = {
+      common = {
+        default = [ "gtk" ];
+      };
+      sway = {
+        default = [ "gtk" ];
+        "org.freedesktop.impl.portal.Screencast" = [ "wlr" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
+      };
+    };
   };
+
 }
