@@ -66,6 +66,7 @@
       mupdf
       easyeffects
       links2
+      upwork
 
       # Video rendering
       v4l-utils
