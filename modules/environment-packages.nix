@@ -104,6 +104,7 @@
       ansible
       android-tools
       dmidecode
+      awscli2
 
       # Office
       pandoc
